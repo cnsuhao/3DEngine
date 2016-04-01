@@ -16,8 +16,8 @@ GPoint PointInteration(const GPoint pt0, const GPoint pt1, float fRadio)
     float fRadio1 = 1.0f - fRadio;
     
     // 插值坐标
-    pt.vPos.x = pt0.vPos.x * fRadio1 + pt1.vPos.x * fRadio ;//+ 0.5f;
-    pt.vPos.y = pt0.vPos.y * fRadio1 + pt1.vPos.y * fRadio ;//+ 0.5f;
+    pt.vPos.x = pt0.vPos.x * fRadio1 + pt1.vPos.x * fRadio + 0.5f;
+    pt.vPos.y = pt0.vPos.y * fRadio1 + pt1.vPos.y * fRadio + 0.5f;
 
     // 插值深度
     pt.fDepth   = pt0.fDepth * fRadio1 + pt1.fDepth * fRadio;

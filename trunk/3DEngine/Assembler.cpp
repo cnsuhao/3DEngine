@@ -17,7 +17,7 @@ void CAssembler::SetVerticesData(CVerticesData* verticesData)
 {
     m_pVerticesData = verticesData;
     m_nTotalNum = verticesData->GetPosVec().size();
-    m_nTotalNum = 3;
+    //m_nTotalNum = 3;// 
     m_nIndex = 0;
 }
 

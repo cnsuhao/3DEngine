@@ -40,7 +40,7 @@ void CRaster::RasterizationTriangle(const GPoint& pt0, const GPoint& pt1, const 
     RasterizationLine(pt0, pt1);
     RasterizationLine(pt0, pt2);
     RasterizationLine(pt1, pt2);
-
+    //return;
     {
         // 画填充三角形
         // 按y的大小排序
@@ -312,5 +312,10 @@ void CRaster::SetDepthBufferData(float* fBuffer)
 void CRaster::SetTexture(CTexture* pTexture)
 {
     m_pTexture = pTexture;
+}
+
+void CRaster::SetTextureState(EnTexState flag)
+{
+    m_eTexState = flag;
 }
 

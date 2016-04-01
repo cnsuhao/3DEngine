@@ -3,6 +3,7 @@
 class CTexture;
 class CRaster
 {
+public:
     enum EnTexState
     {
         TEX_ENABLED,
@@ -23,6 +24,7 @@ public:
     void SetDepthBufferData(float* fBuffer);
     void Rasterization(CGeometryData* pGeometry);
     void SetTexture(CTexture* pTexture);
+    void SetTextureState(EnTexState flag);
 
 protected:
     void RasterizationLine(const GPoint& pt0, const GPoint& pt1);

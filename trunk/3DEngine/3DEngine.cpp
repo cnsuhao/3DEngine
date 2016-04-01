@@ -47,6 +47,7 @@ void C3DEngine::Draw()
     CVerticesData transformedData = m_oVerticesDataTransformer.TransformVerticesData(m_verticesData, m_camera.GetViewProjectionMat());   // 顶点变换
     m_assembler.SetVerticesData(&transformedData);                       // 图元组装
     CGeometryData* pGeometry;
+    m_raster.SetTextureState(CRaster::TEX_ENABLED);
     while( m_assembler.GetNextGeometry(pGeometry) )
     {
         m_raster.Rasterization(pGeometry);          // 光栅化

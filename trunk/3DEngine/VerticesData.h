@@ -11,6 +11,7 @@ public:
     enum EnPrimitiveType
     {
         PT_LINES,
+        PT_LINE_STRIP,
         PT_TRIANGLES
     };
     CVerticesData(void);
@@ -27,6 +28,7 @@ public:
     const std::vector<glm::vec2>& GetTexVec();
     EnPrimitiveType GetPrimitiveType();
     void SetPrimitiveType(EnPrimitiveType ePrimitive);
+    void ChangePrimitiveType();
 protected:
     std::vector<CWorldCoordinate> m_vPosVec;
     std::vector<CColor>    m_vColorVec;

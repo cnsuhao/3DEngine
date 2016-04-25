@@ -303,6 +303,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         pEngine->MouseEvent(message, wParam, lParam);
         pEngine->Draw();
         break;
+    case WM_KEYUP:
+        pEngine->KeyEvent(message, wParam, lParam);
+        ::PostMessage(hWnd, WM_PAINT, 0, 0);
+        break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}

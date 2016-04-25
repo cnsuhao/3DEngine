@@ -319,3 +319,16 @@ void CRaster::SetTextureState(EnTexState flag)
     m_eTexState = flag;
 }
 
+void CRaster::ChangeTextureState()
+{
+    if (m_eTexState == TEX_ENABLED)
+    {
+        m_eTexState = TEX_DISABLED;
+    }
+    else
+    {
+        m_eTexState = TEX_ENABLED;
+    }
+    
+}
+

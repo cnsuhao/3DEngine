@@ -6,6 +6,7 @@
 #include "glm/gtx/string_cast.hpp"
 
 CVerticesTransformer::CVerticesTransformer(void)
+    : m_bLightEnabled(false)
 {
 
 }
@@ -80,7 +81,7 @@ CVerticesData CVerticesTransformer::TransformVerticesData(CVerticesData& vertice
     const std::vector<CColor>& colorVec = verticesData.GetColorVec();
     std::vector<CColor> newColor;
     newColor.reserve( colorVec.size() );
-    if ( verticesData.GetPrimitiveType() == CVerticesData::PT_TRIANGLES )
+    if (verticesData.GetPrimitiveType() == CVerticesData::PT_TRIANGLES && m_bLightEnabled)
     {
         for (size_t i=0; i<posVec.size(); )
         {
@@ -104,18 +105,6 @@ CVerticesData CVerticesTransformer::TransformVerticesData(CVerticesData& vertice
             if ( fAngle > 0.0f )
             {
                 // ¾µÃæ·´Éä
-                //CWorldCoordinate R = 2.0f * averageNormal * lightDirection - lightDirection;
-                //float ffAngle = glm::dot( glm::normalize(-m_eyeDir), R );
-                //if (ffAngle > 0.0f)
-                //{
-                //    int ambient = ffAngle * 100;
-                //    CColor tmpColor(ambient, ambient, ambient);
-                //    originalColor += tmpColor;
-                //}
-                //else
-                //{
-                //    fAngle = 1;
-                //}
                 CColor lightColor(lightValue, lightValue, lightValue);
                 originalColor += lightColor;
             }
@@ -148,15 +137,12 @@ CVerticesData CVerticesTransformer::TransformVerticesData(CVerticesData& vertice
             //    CColor tmpColor(ambient, ambient, ambient);
             //    originalColor += tmpColor;
             //}
-
-
-
             newColor.push_back( originalColor );
             newColor.push_back( originalColor );
             newColor.push_back( originalColor );
         }
     }
-    else if( verticesData.GetPrimitiveType() == CVerticesData::PT_LINES )
+    else
     {
         for (size_t i=0; i<posVec.size(); ++i)
         {
@@ -179,4 +165,9 @@ void CVerticesTransformer::SetAspect(float fAspect)
 void CVerticesTransformer::SetEyeDirection(CWorldCoordinate eyeDir)
 {
     m_eyeDir = glm::normalize(eyeDir);
+}
+
+void CVerticesTransformer::ChangeLightState()
+{
+    m_bLightEnabled ^= true;
 }

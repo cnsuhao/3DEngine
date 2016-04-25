@@ -32,7 +32,7 @@ C3DEngine::C3DEngine(HWND hWnd, int iWindowWidth, int iWindowHeight)
     m_bih.biSizeImage = nArraySize;
     m_hDD = DrawDibOpen();
 
-    m_texture.LoadFromFile(std::wstring(L"girl.jpg"));
+    m_texture.LoadFromFile(std::wstring(L"muban1.jpg"));
 }
 
 C3DEngine::~C3DEngine()
@@ -47,7 +47,7 @@ void C3DEngine::Draw()
     CVerticesData transformedData = m_oVerticesDataTransformer.TransformVerticesData(m_verticesData, m_camera.GetViewProjectionMat());   // 顶点变换
     m_assembler.SetVerticesData(&transformedData);                       // 图元组装
     CGeometryData* pGeometry;
-    m_raster.SetTextureState(CRaster::TEX_ENABLED);
+    //m_raster.SetTextureState(CRaster::TEX_ENABLED);
     while( m_assembler.GetNextGeometry(pGeometry) )
     {
         m_raster.Rasterization(pGeometry);          // 光栅化
@@ -127,4 +127,25 @@ loop1:		mov [edi], eax
 void C3DEngine::MouseEvent(UINT msg, WPARAM wParam, LPARAM lParam)
 {
     m_camera.MouseEvent(msg, wParam, lParam);
+}
+
+void C3DEngine::KeyEvent(UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    switch (wParam)
+    {
+    case 'q':
+    case 'Q':
+        m_verticesData.ChangePrimitiveType();
+        break;
+    case 'w':
+    case 'W':
+        m_raster.ChangeTextureState();
+        break;
+    case 'e':
+    case 'E':
+        m_oVerticesDataTransformer.ChangeLightState();
+        break;
+    default:
+        break;
+    }
 }

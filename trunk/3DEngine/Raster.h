@@ -25,6 +25,7 @@ public:
     void Rasterization(CGeometryData* pGeometry);
     void SetTexture(CTexture* pTexture);
     void SetTextureState(EnTexState flag);
+    void ChangeTextureState();
 
 protected:
     void RasterizationLine(const GPoint& pt0, const GPoint& pt1);

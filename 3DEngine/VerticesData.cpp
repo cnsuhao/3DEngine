@@ -60,3 +60,15 @@ void CVerticesData::SetTexVec(const std::vector<glm::vec2>& tData)
 {
     m_vTexVec = tData;
 }
+
+void CVerticesData::ChangePrimitiveType()
+{
+    if (m_ePrimitive == PT_LINE_STRIP)
+    {
+        m_ePrimitive = PT_TRIANGLES;
+    }
+    else
+    {
+        m_ePrimitive = PT_LINE_STRIP;
+    }
+}

@@ -10,11 +10,13 @@ public:
     CVerticesData TransformVerticesData(CVerticesData& verticesData, glm::mat4 );
     void SetAspect(float fAspect);
     void SetEyeDirection(CWorldCoordinate eyeDir);
+    void ChangeLightState();
 private:
     glm::mat4 m_perspectiveMat;
     glm::mat4 m_viewMat;
     CWorldCoordinate m_eyeDir;
 
     float m_fAspect;
+    bool m_bLightEnabled;
 };
 

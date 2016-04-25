@@ -42,7 +42,7 @@ bool CAssembler::GetNextGeometry(CGeometryData*& geometry)
                 wpt0 = ViewportTransform( vPos[m_nIndex] );
                 GPoint pt1(wpt0, vColor[m_nIndex]);
                 geometry = new CLine(pt0, pt1);
-                m_nIndex += 2;
+                m_nIndex ++;
             }
             else
             {
@@ -50,6 +50,27 @@ bool CAssembler::GetNextGeometry(CGeometryData*& geometry)
             }
         }
         break;
+    case CVerticesData::PT_LINE_STRIP:
+    {
+        if (m_nIndex + 1 < m_nTotalNum)
+        {
+            // 可以在这儿进行视口变换
+            //GPoint pt0(tScreenCoor, vColor[m_nIndex], vTex[m_nIndex]);
+            CWorldCoordinate wpt0 = ViewportTransform(vPos[m_nIndex]);
+            GPoint pt0(wpt0, vColor[m_nIndex]);
+            m_nIndex++;
+            //GPoint pt1(vPos[m_nIndex], vColor[m_nIndex], vTex[m_nIndex]);
+            wpt0 = ViewportTransform(vPos[m_nIndex]);
+            GPoint pt1(wpt0, vColor[m_nIndex]);
+            geometry = new CLine(pt0, pt1);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    break;
+        
     case CVerticesData::PT_TRIANGLES:
         {
             if ( m_nIndex + 2 < m_nTotalNum )

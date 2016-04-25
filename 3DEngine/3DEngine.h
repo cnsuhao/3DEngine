@@ -30,6 +30,7 @@ public:
 
     void SetVerticesData(CVerticesData& pVerticesData);
     void MouseEvent(UINT msg, WPARAM wParam, LPARAM lParam);
+    void KeyEvent(UINT msg, WPARAM wParam, LPARAM lParam);
 
 private:
     void Clear();

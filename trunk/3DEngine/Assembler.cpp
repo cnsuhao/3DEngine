@@ -5,6 +5,9 @@
 CAssembler::CAssembler(void)
     : m_nIndex(0)
     , m_nTotalNum(0)
+    , m_pVerticesData(nullptr)
+    , m_uViewportWidht(0)
+    , m_uViewportHeight(0)
 {
 }
 

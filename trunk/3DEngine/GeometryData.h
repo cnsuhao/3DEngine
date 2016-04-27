@@ -12,13 +12,12 @@ struct GPoint
     {
     }
     GPoint(const CWorldCoordinate& pos, const CColor& color, const glm::vec2& uv)
+        : uColor(color)
+        , uvPos(uv)
     {
         vPos.x  = pos.x + 0.5f;
         vPos.y  = pos.y + 0.5f;
         fDepth  = pos.z;
-        uColor  = color;
-
-        uvPos   = uv;
     };
 
     GPoint(const CWorldCoordinate& pos, const CColor& color = CColor(255, 255, 255))
